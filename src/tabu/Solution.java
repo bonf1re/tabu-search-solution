@@ -19,8 +19,9 @@ public class Solution
         return this.count;
     }
 
-    public int setCount()
+    public void setCount(Integer count)
     {
+        this.count = count;
     }
 
     public Integer[] getProductOrder()

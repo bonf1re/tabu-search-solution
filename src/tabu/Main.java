@@ -17,5 +17,11 @@ public class Main
         testSol.increaseCount();
         out.println(testSol.getCount());
         out.println(testSol.getProductOrder()[20]);
+        testSol.setCount(7);
+        out.println(testSol.getCount());
+        
+        TabuList list = new TabuList();
+        list.addSolution(testSol);
+        out.println(list.getSolutions().get(0).getCount());
     }
 }
