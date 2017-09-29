@@ -11,17 +11,9 @@ public class Main
             order[i] = i;
         }
 
-        Solution testSol = new Solution(order);
-        final Main main = new Main();
-        out.println(testSol.getCount());
-        testSol.increaseCount();
-        out.println(testSol.getCount());
-        out.println(testSol.getProductOrder()[20]);
-        testSol.setCount(7);
-        out.println(testSol.getCount());
-        
-        TabuList list = new TabuList();
-        list.addSolution(testSol);
-        out.println(list.getSolutions().get(0).getCount());
+        TabuProblem tProblem = new TabuProblem();
+        TabuSearch tSearch = new TabuSearch();
+        Solution best = tSearch.search(tProblem, order);
+        out.println(best.getProductOrder().length);
     }
 }
