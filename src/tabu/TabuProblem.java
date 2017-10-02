@@ -1,28 +1,56 @@
 package src.tabu;
 
-import java.util.Arrays;
+import static java.lang.System.out;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class TabuProblem
 {
+    private Integer[][] map = new Integer[60][30];
+
+    /**
+     * Constructor para el objeto TabuProblem
+     */
+    public TabuProblem(Integer[][] map)
+    {
+        this.map = map;
+    }
+
     /**
      * @param order arreglo de productos por atender
      * @return Solution solucion inicial por la que se iniciara la busqueda
      */
-    public Solution initial(Integer[] order)
+    public Solution initial(ArrayList<Coordinates> order)
     {
-        Collections.shuffle(Arrays.asList(order));
+        Collections.shuffle(order);
         return new Solution(order);
     }
 
     /**
-     * @param solution solucion a validar
-     * @return Integer distancia total a ser recorrida para la solucion dada
+     * @param first coordenadas del lugar de origen
+     * @param second coordenadas del lugar de destino
+     * @return double distancia del primero punto al segundo
      */
-    private Integer getDistance(Solution solution)
+    private Double euclidean(Coordinates first, Coordinates second)
     {
-        return 0;
+        return Math.sqrt(Math.pow(first.getX() - second.getX(), 2) + Math.pow(first.getY() - second.getY(), 2));
+    }
+
+    /**
+     * @param solution solucion a validar
+     * @return double distancia total a ser recorrida para la solucion dada
+     */
+    public Double getDistance(Solution solution)
+    {
+        Double distance = 0.0;
+
+        for(int i = 0; i < solution.getOrder().size() - 1; i++) {
+            Double move = this.euclidean(solution.getOrder().get(i), solution.getOrder().get(i+1));
+            distance += move;    
+        }
+
+        return distance;
     }
 
     /**
@@ -32,7 +60,7 @@ public class TabuProblem
      */
     public boolean isBetter(Solution s1, Solution s2)
     {
-        return (this.getDistance(s1) <= this.getDistance(s2)) ? false : true;
+        return (this.getDistance(s1) < this.getDistance(s2)) ? true : false;
     }
 
     /**
@@ -46,10 +74,22 @@ public class TabuProblem
                 -> this.getDistance(s1).compareTo(this.getDistance(s2)));
 
         for (int i = 0; i < candidates.size(); i++) {
-            if (!tList.getSolutions().contains(candidates.get(i))) {
+            boolean found = false;
+
+            for (int j = 0; j < tList.getSolutions().size(); j++) {
+                if (candidates.get(i).stringFormatOrder().equals(tList.getSolutions().get(j).stringFormatOrder())) {
+                    out.println("SOLUCION EN TABU");
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found == false) {
+                out.println("Solución no se encuentra en la lista tabu");
                 return candidates.get(i);
             }
         }
+
         return candidates.get(0);
     }
 
@@ -60,6 +100,6 @@ public class TabuProblem
      */
     public boolean stop(Solution best, Integer iterations) 
     {
-        return (iterations >= 1000 || best.getCount() == 10) ? true : false;
+        return (iterations >= 100000 || best.getCount() == 5000) ? true : false;
     }
 }
