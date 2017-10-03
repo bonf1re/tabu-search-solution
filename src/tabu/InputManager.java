@@ -9,39 +9,39 @@ import java.util.ArrayList;
 
 public class InputManager
 {
-    public Integer[][] loadMatrix(String mapFile) throws FileNotFoundException, IOException
+    public Integer[][] cargarMatriz(String mapFile) throws FileNotFoundException, IOException
     {
-        Integer[][] matrix = new Integer[60][30];
+        Integer[][] matriz = new Integer[60][30];
         BufferedReader mapR = new BufferedReader(new FileReader(mapFile));
             
         for (int y = 0; y < 30; y++) {
-            String line = mapR.readLine();
+            String linea = mapR.readLine();
             for (int x = 0; x < 60; x++) {
-                matrix[x][y] = Character.getNumericValue(line.charAt(x));
+                matriz[x][y] = Character.getNumericValue(linea.charAt(x));
             }
         }
 
         mapR.close();
 
-        return matrix;
+        return matriz;
     }
 
-    public ArrayList<Coordinates> loadOrder(String orderFile) throws FileNotFoundException, IOException
+    public ArrayList<Coordinates> cargarOrden(String orderFile) throws FileNotFoundException, IOException
     {
-        ArrayList<Coordinates> order = new ArrayList<Coordinates>();
+        ArrayList<Coordinates> orden = new ArrayList<Coordinates>();
         BufferedReader orderR = new BufferedReader(new FileReader(orderFile));
 
         for (int i = 0; i < 50; i++) {
-            String line = orderR.readLine();
-            line = line.replace("[", "");
-            line = line.replace("]", "");
-            String[] words = line.split(",");
-            Coordinates newCoord = new Coordinates();
-            newCoord.setY(Integer.parseInt(words[0]));
-            newCoord.setX(Integer.parseInt(words[1]));
-            order.add(newCoord);
+            String linea = orderR.readLine();
+            linea = linea.replace("[", "");
+            linea = linea.replace("]", "");
+            String[] tokens = linea.split(",");
+            Coordinates nuevasCoord = new Coordinates();
+            nuevasCoord.setY(Integer.parseInt(tokens[0]));
+            nuevasCoord.setX(Integer.parseInt(tokens[1]));
+            orden.add(nuevasCoord);
         }
 
-        return order;
+        return orden;
     }
 }

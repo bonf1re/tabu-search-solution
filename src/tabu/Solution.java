@@ -6,27 +6,27 @@ import java.util.Arrays;
 
 public class Solution
 {
-    private ArrayList<Coordinates> order = new ArrayList<Coordinates>();
+    private ArrayList<Coordinates> orden = new ArrayList<Coordinates>();
     private int count;
 
     /**
      * Constructor para el objeto Solution
      */
-    public Solution(ArrayList<Coordinates> order)
+    public Solution(ArrayList<Coordinates> orden)
     {
-        this.order = order;
+        this.orden = orden;
         this.count = 0;
     }
 
     public Solution(Solution sol)
     {
-        ArrayList<Coordinates> order = new ArrayList<Coordinates>(sol.getOrder().size());
+        ArrayList<Coordinates> orden = new ArrayList<Coordinates>(sol.getOrden().size());
 
-        for (int i = 0; i < sol.getOrder().size(); i++) {
-            order.add(sol.getOrder().get(i));
+        for (int i = 0; i < sol.getOrden().size(); i++) {
+            orden.add(sol.getOrden().get(i));
         }
         
-        this.order = order;
+        this.orden = orden;
         this.count = 0;
     }
 
@@ -40,29 +40,29 @@ public class Solution
         this.count = count;
     }
 
-    public ArrayList<Coordinates> getOrder()
+    public ArrayList<Coordinates> getOrden()
     {
-        return this.order;
+        return this.orden;
     }
 
-    public void increaseCount()
+    public void aumentarCount()
     {
         this.count++;
     }
 
-    public String stringFormatOrder()
+    public String stringFormatOrden()
     {
-        String order = "";
+        String orden = "";
 
         for (int i = 0; i < 50; i++) {
-            order = order + "[" + this.order.get(i).stringFormat() + "], ";
+            orden = orden + "[" + this.orden.get(i).stringFormat() + "], ";
         }
 
-        return order;
+        return orden;
     }
 
-    public void printOrder()
+    public void imprimirOrden()
     {
-        out.println(this.stringFormatOrder());
+        out.println(this.stringFormatOrden());
     }
 }

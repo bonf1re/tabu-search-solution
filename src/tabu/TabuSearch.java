@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class TabuSearch 
 {
-    private TabuList tList;
+    private TabuList listaT;
     private TabuUtils tUtils;
 
     /**
@@ -13,7 +13,7 @@ public class TabuSearch
      */
     public TabuSearch()
     {
-        this.tList = new TabuList();
+        this.listaT = new TabuList();
         this.tUtils = new TabuUtils();
     }
 
@@ -22,49 +22,49 @@ public class TabuSearch
      * @param order arreglo de productos por atender
      * @return Solution mejor solucion para el objeto problem 
      */ 
-    public Solution search(TabuProblem problem, ArrayList<Coordinates> order) 
+    public Solution buscar(TabuProblem problema, ArrayList<Coordinates> orden) 
     { 
-        Solution current = problem.initial(order); 
-        Solution best = current; 
+        Solution actual = problema.inicial(orden); 
+        Solution mejor = actual; 
         
-        Integer currentIteration = 0; 
+        Integer iteracion = 0; 
         
-        while (!problem.stop(best, currentIteration)) { 
+        while (!problema.parada(mejor, iteracion)) { 
             out.println("=================================");
-            out.println("Iteración Nro " + currentIteration);
+            out.println("Iteración Nro " + iteracion);
             out.println("Mejor solución actual:");
-            out.println("Distancia: " + problem.getDistance(best));
-            best.printOrder();
+            out.println("Distancia: " + problema.distancia(mejor));
+            mejor.imprimirOrden();
             out.println("Ultima solución evaluada:");
-            out.println("Distancia: " + problem.getDistance(current));
-            current.printOrder();
+            out.println("Distancia: " + problema.distancia(actual));
+            actual.imprimirOrden();
 
-            ArrayList<Solution> candidates = this.tUtils.getNeighbors(current);
-            Solution newSol = problem.findBestNeighbor(candidates, this.tList); 
+            ArrayList<Solution> candidatos = this.tUtils.vecinos(actual);
+            Solution nuevaSol = problema.mejorVecino(candidatos, this.listaT); 
 
             out.println("Mejor solución vecina posible:");
-            out.println("Distancia: " + problem.getDistance(newSol));
-            newSol.printOrder();
+            out.println("Distancia: " + problema.distancia(nuevaSol));
+            nuevaSol.imprimirOrden();
 
-            current = newSol; 
-            this.tList.update(current); 
+            actual = nuevaSol; 
+            this.listaT.actualizar(actual); 
 
-            if (problem.isBetter(current, best)) { 
-                best = current; 
+            if (problema.esMejor(actual, mejor)) { 
+                mejor = actual; 
                 out.println("Nueva mejor solución encontrada");
             } else { 
-                best.increaseCount(); 
+                mejor.aumentarCount(); 
                 out.println("Se mantiene mejor solución");
             } 
 
             out.println("Mejor solución actual:");
-            out.println("Distancia: " + problem.getDistance(best));
-            best.printOrder();
-            out.println("Contador: " + best.getCount());
+            out.println("Distancia: " + problema.distancia(mejor));
+            mejor.imprimirOrden();
+            out.println("Contador: " + mejor.getCount());
             
-            currentIteration++;
+            iteracion++;
         } 
 
-        return best;
+        return mejor;
     }
 }
