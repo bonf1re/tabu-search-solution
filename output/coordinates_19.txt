@@ -1,0 +1,2 @@
+Archivo: coordinates_19.txt
+Distancia: 219.55959871616048

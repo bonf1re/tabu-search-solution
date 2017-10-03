@@ -1,0 +1,2 @@
+Archivo: coordinates_34.txt
+Distancia: 237.12408495623745

@@ -1,0 +1,2 @@
+Archivo: coordinates_47.txt
+Distancia: 242.5491974212391

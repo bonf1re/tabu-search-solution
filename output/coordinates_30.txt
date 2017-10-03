@@ -1,0 +1,2 @@
+Archivo: coordinates_30.txt
+Distancia: 246.94795307441706

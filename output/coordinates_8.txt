@@ -1,0 +1,2 @@
+Archivo: coordinates_8.txt
+Distancia: 282.8740146056973

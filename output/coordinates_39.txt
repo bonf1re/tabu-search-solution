@@ -1,0 +1,2 @@
+Archivo: coordinates_39.txt
+Distancia: 167.25290613996978

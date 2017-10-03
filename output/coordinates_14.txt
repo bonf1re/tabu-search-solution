@@ -1,0 +1,2 @@
+Archivo: coordinates_14.txt
+Distancia: 276.1263246287911

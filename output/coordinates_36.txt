@@ -1,0 +1,2 @@
+Archivo: coordinates_36.txt
+Distancia: 232.62672047150525

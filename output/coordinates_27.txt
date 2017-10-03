@@ -1,0 +1,2 @@
+Archivo: coordinates_27.txt
+Distancia: 304.97722211252716

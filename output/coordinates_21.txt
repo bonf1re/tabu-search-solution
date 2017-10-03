@@ -1,0 +1,2 @@
+Archivo: coordinates_21.txt
+Distancia: 208.46182776912124

@@ -66,7 +66,7 @@ public class TabuProblem
      */
     public boolean esMejor(Solution s1, Solution s2)
     {
-        return (this.distancia(s1) < this.distancia(s2)) ? true : false;
+        return (this.distancia(s1) < this.distancia(s2));
     }
 
     /**

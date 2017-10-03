@@ -1,0 +1,2 @@
+Archivo: coordinates_43.txt
+Distancia: 240.0497561657993

@@ -1,0 +1,2 @@
+Archivo: coordinates_32.txt
+Distancia: 302.60419846388794
